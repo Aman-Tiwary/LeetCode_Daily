@@ -1,0 +1,33 @@
+https://leetcode.com/problems/minimize-maximum-pair-sum-in-array
+
+Example 1:
+Input: nums = [3,5,2,3]
+Output: 7
+Explanation: The elements can be paired up into pairs (3,3) and (5,2).
+The maximum pair sum is max(3+3, 5+2) = max(6, 7) = 7.
+
+Example 2:
+Input: nums = [3,5,4,2,4,6]
+Output: 8
+Explanation: The elements can be paired up into pairs (3,5), (4,4), and (6,2).
+The maximum pair sum is max(3+5, 4+4, 6+2) = max(8, 8, 8) = 8.
+
+Solution: sort the array and then pair the max with the respective min to get optimum maximum value for the pair.
+
+class Solution {
+public:
+    int minPairSum(vector<int>& nums) {
+     int result = 0;
+     int n =  nums.size();
+     int i = 0;
+     int j = n-1;
+     sort(begin(nums),end(nums));
+     while(i<j){
+         int sum = nums[i]+nums[j];
+         result = max(sum,result);
+         i++;
+         j--; 
+     } 
+     return result;  
+    }
+};
