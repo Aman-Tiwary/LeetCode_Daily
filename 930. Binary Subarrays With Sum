@@ -1,0 +1,27 @@
+https://leetcode.com/problems/binary-subarrays-with-sum
+
+Same as 560
+
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int n = nums.size();
+        unordered_map<int,int> mp;
+
+        int result = 0;
+        int curSum = 0;
+
+        mp[0]=1;
+
+        for(int &num:nums){
+            curSum += num;
+            int remSum = curSum - goal;
+            if(mp.find(remSum)!=mp.end()){
+                result += mp[remSum];
+            }
+            mp[curSum]++;
+        }
+        return result;
+        
+    }
+};
