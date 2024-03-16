@@ -1,4 +1,5 @@
 https://leetcode.com/problems/contiguous-array
+same as 560
 
 class Solution {
 public:
