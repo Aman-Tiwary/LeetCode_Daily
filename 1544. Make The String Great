@@ -1,0 +1,26 @@
+
+
+class Solution {
+public:
+    string makeGood(string s) {
+         string stack; // Using a string to simulate a stack
+
+        // Iterate over each character in the input string
+        for (char c : s) {
+            // If the stack is empty or the absolute difference
+            // between the ASCII values of the top character in the stack
+            // and the current character is not 32 (difference between lower case and upper case),
+            // then push the current character onto the stack.
+            if (stack.empty() || abs(stack.back() - c) != 32) {
+                stack += c;
+            } else {
+                // If the top character of the stack is of opposite case but same letter as 
+                // the current character, pop the top character from the stack.
+                stack.pop_back();
+            }
+        }
+
+        // Return the resulting string after stack simulation, which is the "good" string.
+        return stack;
+    }
+};
