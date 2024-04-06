@@ -1,0 +1,45 @@
+https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses
+
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+
+        int n = s.length();
+        string r = "";
+        int open = 0;
+
+        //Iterating to eliminate extra closed bracket.
+        for(int i = 0;i<n;i++){
+            if(s[i]>='a' && s[i]<='z'){
+                r.push_back(s[i]);
+            }
+            else if(s[i]=='('){
+                open++;
+                r.push_back(s[i]);
+            }
+            else if(open>0){
+                open--;
+                r.push_back(s[i]);
+            }
+        }
+
+        string t = "";
+        int close = 0;
+        //Iterating to eliminate extra open bracket.
+        for(int i = r.length()-1;i>=0;i--){
+            if(r[i]>='a' && r[i]<='z'){
+                t.push_back(r[i]);
+            }
+            else if(r[i]==')'){
+                close++;
+                t.push_back(r[i]);
+            }
+            else if(close>0){
+                close--;
+                t.push_back(r[i]);
+            }
+        }
+        reverse(begin(t),end(t));
+        return t;
+    }
+};
