@@ -1,0 +1,27 @@
+class Solution {
+public:
+typedef long long ll;
+    long long maximumValueSum(vector<int>& nums, int k, vector<vector<int>>& edges) {
+      vector<int> profit;
+
+      ll nSum = 0;
+
+      for(int i= 0 ; i < nums.size(); i++){
+        nSum += nums[i];
+        profit.push_back((nums[i]^k)-nums[i]);
+      } 
+        sort(begin(profit),end(profit),greater<int>());
+
+        int n = profit.size();
+
+       for(int i= 0 ; i < n-1; i+=2){
+        ll pairSum = profit[i]+profit[i+1];
+
+        if(pairSum >0){
+            nSum += pairSum;;
+        }
+      }
+
+      return nSum;   
+    }
+};
